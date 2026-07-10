@@ -1,0 +1,10 @@
+pydantic>=2.6
+numpy
+pillow
+fastapi
+uvicorn[standard]
+httpx
+python-multipart
+pandas
+matplotlib
+pytest

@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #111518;
+  --surface: #1a1f25;
+  --surface-raised: #232a32;
+  --border: #2e363f;
+  --text: #e1e4e8;
+  --text-muted: #8b949e;
+  --teal: #0e9aa7;
+  --teal-dim: #0b7a85;
+  --coral: #e4572e;
+  --green: #3fb950;
+  --amber: #d29922;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* leaflet tile fix for dark theme */
+.leaflet-container {
+  background: #1a1f25;
+}

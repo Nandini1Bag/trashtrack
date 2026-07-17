@@ -1,0 +1,19 @@
+# TrashTrack — Merged dataset (Run B: multi-perspective training)
+# Trains on TACO + UAVVaste + RoLID-11K combined.
+# Evaluate per-dataset separately using the individual configs.
+#
+# Usage:
+#   yolo detect train data=configs/merged.yaml model=yolov8s.pt epochs=100 imgsz=640
+#
+# Then evaluate on each dataset:
+#   yolo detect val data=configs/taco.yaml model=runs/detect/train/weights/best.pt
+#   yolo detect val data=configs/uavvaste.yaml model=runs/detect/train/weights/best.pt
+#   yolo detect val data=configs/rolid11k.yaml model=runs/detect/train/weights/best.pt
+
+path: ../datasets/merged
+train: images/train
+val: images/train   # merged has no val — evaluate per-dataset using individual configs
+
+nc: 1
+names:
+  0: litter

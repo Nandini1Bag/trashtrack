@@ -1,0 +1,10 @@
+# TrashTrack — RoLID-11K (for cross-dataset evaluation)
+# Usage: yolo detect val data=configs/rolid11k.yaml model=runs/detect/train/weights/best.pt
+
+path: ../datasets/rolid11k
+train: images/train
+val: images/val
+
+nc: 1
+names:
+  0: litter

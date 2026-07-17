@@ -1,0 +1,10 @@
+# TrashTrack — UAVVaste (for cross-dataset evaluation)
+# Usage: yolo detect val data=configs/uavvaste.yaml model=runs/detect/train/weights/best.pt
+
+path: ../datasets/uavvaste
+train: images/train
+val: images/val
+
+nc: 1
+names:
+  0: litter

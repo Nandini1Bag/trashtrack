@@ -1,0 +1,10 @@
+# TrashTrack — TACO only (Run A: single-dataset baseline)
+# Usage: yolo detect train data=configs/taco.yaml model=yolov8s.pt epochs=100 imgsz=640
+
+path: ../datasets/taco
+train: images/train
+val: images/val
+
+nc: 1
+names:
+  0: litter

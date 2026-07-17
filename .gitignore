@@ -1,52 +1,7 @@
-# Python
+.venv/
 __pycache__/
-*.py[cod]
-*.pyo
-.venv/
-venv/
-*.egg-info/
-dist/
-build/
-*.egg
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Model weights
+*.pyc
+storage/
 *.pt
-*.onnx
-*.torchscript
-
-# Data (large files — download via script, don't commit)
 data/taco_annotations.json
-data/*.json
-data/*.zip
-sample_data/*.jpg
-sample_data/*.png
-
-# EDA outputs (regenerate from notebook)
-notebooks/*.png
-notebooks/*.csv
-eda_out/
-
-# Environment
-.env
-.venv/
-*.log
-
-# React / Node
-frontend/node_modules/
-frontend/dist/
-frontend/.vite/
-
-# OS
 .DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo

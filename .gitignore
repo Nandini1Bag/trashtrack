@@ -5,3 +5,5 @@ storage/
 *.pt
 data/taco_annotations.json
 .DS_Store
+data/
+datasets/

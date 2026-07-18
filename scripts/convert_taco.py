@@ -108,12 +108,15 @@ def main():
             w, h = img_info["width"], img_info["height"]
 
             # Copy image
-            dest_img = out / "images" / split / img_path.name
+            # unique name to avoid batch collisions
+            unique_name = f"{img_path.parent.name}_{img_path.name}"
+            unique_stem = f"{img_path.parent.name}_{img_path.stem}"
+            dest_img = out / "images" / split / unique_name
             if not dest_img.exists():
                 shutil.copy2(img_path, dest_img)
 
             # Write YOLO label file (all classes → 0)
-            label_path = out / "labels" / split / (img_path.stem + ".txt")
+            label_path = out / "labels" / split / (unique_stem + ".txt")
             lines = []
             for ann in ann_by_img.get(img_id, []):
                 bbox = ann.get("bbox")

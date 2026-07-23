@@ -7,3 +7,10 @@ data/taco_annotations.json
 .DS_Store
 data/
 datasets/
+datasets.zip
+
+# frontend
+node_modules/
+frontend/dist/
+frontend/dist-ssr/
+*.local

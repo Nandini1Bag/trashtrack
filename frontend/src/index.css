@@ -1,3 +1,13 @@
+/* ---------------------------------------------------------------------------
+   TrashTrack design tokens.
+
+   Chart colors are NOT ad-hoc: the categorical slots, the ordinal ramp and the
+   reserved status palette were validated against this app's dark surface
+   (#1a1f25) for lightness band, chroma, CVD separation, normal-vision
+   separation and contrast. Do not hand-edit a slot without re-validating the
+   whole set -- the ORDER is the colorblind-safety mechanism, not decoration.
+--------------------------------------------------------------------------- */
+
 * {
   margin: 0;
   padding: 0;
@@ -5,19 +15,64 @@
 }
 
 :root {
+  /* --- surfaces & ink -------------------------------------------------- */
   --bg: #111518;
   --surface: #1a1f25;
   --surface-raised: #232a32;
+  --surface-hover: #2a323b;
   --border: #2e363f;
+  --border-strong: #3d4753;
   --text: #e1e4e8;
+  --text-secondary: #b6bec7;
   --text-muted: #8b949e;
+
+  /* --- brand ----------------------------------------------------------- */
   --teal: #0e9aa7;
   --teal-dim: #0b7a85;
-  --coral: #e4572e;
-  --green: #3fb950;
-  --amber: #d29922;
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --teal-wash: rgba(14, 154, 167, 0.12);
+
+  /* --- reserved status palette (severity / state) -----------------------
+     Fixed, never themed. Always shipped with an icon + text label so color
+     never carries the meaning on its own. */
+  --status-critical: #d03b3b;
+  --status-warning: #fab219;
+  --status-good: #0ca30c;
+  --status-serious: #ec835a;
+  --status-critical-wash: rgba(208, 59, 59, 0.15);
+  --status-warning-wash: rgba(250, 178, 25, 0.15);
+  --status-good-wash: rgba(12, 163, 12, 0.15);
+
+  /* --- categorical series (litter type). Fixed order, never cycled. ----- */
+  --series-1: #3987e5; /* blue    */
+  --series-2: #d95926; /* orange  */
+  --series-3: #199e70; /* aqua    */
+  --series-4: #c98500; /* yellow  */
+  --series-5: #d55181; /* magenta */
+
+  /* --- ordinal ramp (single hue, monotone lightness) -------------------- */
+  --ramp-1: #86b6ef;
+  --ramp-2: #3987e5;
+  --ramp-3: #256abf;
+
+  /* --- chart chrome ----------------------------------------------------- */
+  --grid: #2c3238;
+  --axis: #3a424b;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+
+  --nav-h: 52px;
+  --sidebar-w: 232px;
+
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
@@ -25,16 +80,98 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
-  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 }
 
-/* leaflet tile fix for dark theme */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+}
+
+/* Leaflet needs an explicit backdrop or tiles flash white while loading. */
 .leaflet-container {
-  background: #1a1f25;
+  background: #0f1317;
+  font-family: var(--font);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--surface-raised);
+  color: var(--text);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--text-muted);
+  padding: 6px 6px 0 0;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background: var(--surface-raised);
+  color: var(--text);
+  border-bottom-color: var(--border);
+}
+
+.leaflet-control-attribution {
+  background: rgba(17, 21, 24, 0.8) !important;
+  color: var(--text-muted) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-muted) !important;
+}
+
+/* OSM raster tiles are light; knock them back so they sit in the theme. */
+.tt-tiles {
+  filter: invert(1) hue-rotate(180deg) brightness(0.94) contrast(0.9) saturate(0.6);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5765;
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
 }

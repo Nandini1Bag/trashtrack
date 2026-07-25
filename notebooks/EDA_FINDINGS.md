@@ -22,7 +22,7 @@ Run on the real TACO annotation set: **1,500 images · 4,784 annotations · 60 c
 
 ## 4. What to do next (before P2 fine-tuning)
 1. Convert TACO to a single-class YOLO dataset; verify the collapse with this notebook.
-2. Run the **same notebook on UAVVaste** (aerial — expect even smaller objects) and **RoLID-11K** (dashcam — expect motion blur, wide aspect ratios). Compare the three size distributions; that comparison is the backbone of your ST-04 generalization story.
+2. Run the **same notebook on UAVVaste** (aerial — expect even smaller objects) and **SIH garbage_best** (street-level bags/piles — expect much larger boxes). Compare the three size distributions; that comparison is the backbone of your ST-04 generalization story.
 3. Decide tile size from the size distribution (e.g. 640px tiles with overlap) rather than guessing.
 
 Charts: `fig1_class_imbalance.png`, `fig2_supercategory.png`, `fig3_object_size.png`, `fig4_sizes_and_density.png`.

@@ -1,0 +1,13 @@
+# TrashTrack — SIH garbage_best (street-level, bags & piles at medium range)
+# Source: https://universe.roboflow.com/smart-india-hackathon-2023/garbage_best/dataset/1
+# License: CC BY 4.0
+# Deduplicated from 2,480 raw files → 1,526 unique annotated images (see scripts/convert_sih.py)
+# Usage: yolo detect val data=configs/sih.yaml model=runs/detect/train/weights/best.pt
+
+path: ../datasets/sih
+train: images/train
+val: images/val
+
+nc: 1
+names:
+  0: litter

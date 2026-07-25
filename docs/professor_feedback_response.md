@@ -79,7 +79,7 @@ pass/fail thresholds. Here are concrete, defensible targets:
 |-----------------|-----------------|-----------|
 | mAP@0.5 (TACO, single-class "litter") | ≥ 0.45 | Published TACO baselines range 0.20–0.55 for multi-class; single-class should be at the upper end. Baseline (pretrained YOLOv8n) = 0.00 — any improvement is meaningful. |
 | mAP@0.5 (UAVVaste) | ≥ 0.35 | Aerial images are harder (smaller objects, altitude variation). Cross-dataset transfer is the research question. |
-| mAP@0.5 (RoLID-11K) | ≥ 0.30 | Dashcam adds motion blur and wide aspect ratio. Lower target reflects domain shift. |
+| mAP@0.5 (SIH garbage_best) | ≥ 0.30 | Street-level bags and piles at medium range — a third perspective distinct from TACO's close-up individual items. Lower target reflects domain shift. |
 | Precision @ conf ≥ 0.50 | ≥ 0.70 | Civic reports must not waste cleanup crews on false positives. |
 | Recall @ conf ≥ 0.25 | ≥ 0.50 | Catch at least half the litter; missing some is acceptable, false alarms are not. |
 
@@ -158,7 +158,7 @@ Rather than throwing bigger GPUs at bigger models, we tile the input:
 |-----------------------------|---------------------|--------------------|
 | TACO fine-tune (YOLOv8s, 100 epochs, tiled) | 3–5 hrs  | Yes |
 | UAVVaste fine-tune          | 2–3 hrs             | Yes |
-| RoLID-11K fine-tune         | 3–4 hrs             | Yes |
+| SIH garbage_best fine-tune  | 3–4 hrs             | Yes |
 | Hyperparameter sweep (5 runs) | 15–20 hrs          | Yes (across 1 week) |
 | Cross-dataset eval          | < 1 hr              | Yes |
 

@@ -27,21 +27,21 @@ CONFIGS = {
     "B": {
         "name": "run_b_merged",
         "data": "configs/merged.yaml",
-        "desc": "Run B: Merged (TACO + UAVVaste + RoLID-11K)",
+        "desc": "Run B: Merged (TACO + UAVVaste + SIH)",
     },
 }
 
 EVAL_DATASETS = [
     ("TACO", "configs/taco.yaml"),
     ("UAVVaste", "configs/uavvaste.yaml"),
-    ("RoLID-11K", "configs/rolid11k.yaml"),
+    ("SIH", "configs/sih.yaml"),
 ]
 
 # Match the thresholds from tests/test_privacy_and_thresholds.py
 THRESHOLDS = {
     "TACO": 0.45,
     "UAVVaste": 0.35,
-    "RoLID-11K": 0.30,
+    "SIH": 0.30,
 }
 
 

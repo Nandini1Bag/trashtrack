@@ -56,26 +56,21 @@ Create a data/ directory first:
         --output datasets/uavvaste
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-3. RoLID-11K (dashcam, 11,000+ images, already YOLO format)
+3. SIH garbage_best (street-level piles & bags, YOLOv8 format)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    cd data
-    git clone https://github.com/xq141839/RoLID-11K.git rolid11k_raw
-    cd ..
+    Download the YOLOv8 export (CC BY 4.0) from Roboflow Universe:
+      https://universe.roboflow.com/smart-india-hackathon-2023/garbage_best/dataset/1
 
-    # Check the repo structure — may have train/val/test splits already.
-    # If already split:
-    python scripts/organize_rolid.py \\
-        --images-dir data/rolid11k_raw/images \\
-        --labels-dir data/rolid11k_raw/labels \\
-        --output datasets/rolid11k \\
-        --already-split
+    Unzip it to data/smart-india-hackathon_raw/ so it looks like:
+      data/smart-india-hackathon_raw/{train,valid,test}/{images,labels}/
 
-    # If flat (no subdirs):
-    python scripts/organize_rolid.py \\
-        --images-dir data/rolid11k_raw/images \\
-        --labels-dir data/rolid11k_raw/labels \\
-        --output datasets/rolid11k
+    # Convert. The raw export ships 2,480 files but only 1,548 unique images,
+    # and byte-identical copies straddle its train/valid/test splits — so the
+    # converter deduplicates by MD5 and re-splits rather than trusting them.
+    python scripts/convert_sih.py \\
+        --raw-dir data/smart-india-hackathon_raw \\
+        --output datasets/sih
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 4. Merge all three for training
@@ -92,7 +87,7 @@ After all conversions, you should have:
     datasets/
     ├── taco/         (images/train, images/val, labels/train, labels/val)
     ├── uavvaste/     (same structure)
-    ├── rolid11k/     (same structure)
+    ├── sih/          (same structure)
     └── merged/       (images/train, labels/train — all combined)
 
 Quick sanity check:

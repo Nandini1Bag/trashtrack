@@ -7,7 +7,7 @@ Usage:
 Expects the three converted datasets at:
     datasets/taco/
     datasets/uavvaste/
-    datasets/rolid11k/
+    datasets/sih/
 
 Creates:
     datasets/merged/
@@ -27,13 +27,18 @@ import shutil
 from pathlib import Path
 
 
-DATASETS = ["taco", "uavvaste", "rolid11k"]
+# A fourth candidate — Roboflow's garbage_detection set — was evaluated and
+# excluded: its boxes annotate whole garbage piles (median box = 64% of the
+# image, vs 0.35% for TACO), with 22% covering the entire frame. That is a
+# different annotation task, so training on it alongside item-level boxes
+# corrupts box regression.
+DATASETS = ["taco", "uavvaste", "sih"]
 
 
 def main():
     parser = argparse.ArgumentParser(description="Merge datasets for training")
     parser.add_argument("--datasets-dir", default="datasets",
-                        help="Parent dir containing taco/, uavvaste/, rolid11k/")
+                        help="Parent dir containing taco/, uavvaste/, sih/")
     parser.add_argument("--output", default="datasets/merged")
     parser.add_argument("--symlink", action="store_true",
                         help="Use symlinks instead of copying (saves disk space)")

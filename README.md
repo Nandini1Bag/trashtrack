@@ -87,5 +87,5 @@ Then set `route_to_civic=True` in `api.py` to see reports acknowledged.
 **Done:** schema, all 5 components, React frontend with map + canvas + reports,
 browser geolocation, closed-loop pipeline, mock civic API, 13 passing tests, TACO EDA.
 
-**Next (P2/P4):** fine-tune YOLOv8 on TACO/UAVVaste/RoLID-11K, cross-dataset
+**Next (P2/P4):** fine-tune YOLOv8 on TACO/UAVVaste/SIH, cross-dataset
 mAP benchmark (ST-04), live-camera mode (ST-05), UAT.

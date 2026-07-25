@@ -55,7 +55,7 @@ class Image(BaseModel):
     """§10.1 Image."""
     image_id: str = Field(default_factory=_uuid)
     source: ImageSource
-    dataset: str = "local"          # TACO / UAVVaste / RoLID-11K / local
+    dataset: str = "local"          # TACO / UAVVaste / SIH / local
     file_path: str
     width: int = Field(gt=0)
     height: int = Field(gt=0)

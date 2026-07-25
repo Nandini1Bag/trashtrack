@@ -52,7 +52,7 @@ THRESHOLDS = {
     # Detection performance (ST-04)
     "map50_taco": 0.45,
     "map50_uavvaste": 0.35,
-    "map50_rolid11k": 0.30,
+    "map50_sih": 0.30,
     "precision_at_conf50": 0.70,
     "recall_at_conf25": 0.50,
 

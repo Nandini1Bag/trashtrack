@@ -56,10 +56,13 @@ class YoloDetector:
     (P2 deliverable) to move past the baseline."""
 
     def __init__(self, weights: str | None = None, confidence: float | None = None,
-                 litter_only: bool = False):
+                 litter_only: bool = False, imgsz: int | None = None,
+                 augment: bool | None = None):
         self.weights = weights or settings.model_weights
         self.confidence = confidence if confidence is not None else settings.confidence_threshold
         self.litter_only = litter_only
+        self.imgsz = imgsz if imgsz is not None else settings.imgsz
+        self.augment = augment if augment is not None else settings.augment
         self._model = None
 
     def _lazy_model(self):
@@ -70,7 +73,8 @@ class YoloDetector:
 
     def detect(self, image: Image, array: np.ndarray) -> List[Detection]:
         model = self._lazy_model()
-        results = model.predict(array, conf=self.confidence, verbose=False)
+        results = model.predict(array, conf=self.confidence, imgsz=self.imgsz,
+                                augment=self.augment, verbose=False)
         out: List[Detection] = []
         for r in results:
             names = r.names

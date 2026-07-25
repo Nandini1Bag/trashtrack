@@ -11,6 +11,13 @@ class Settings:
     model_weights: str = os.getenv("TT_MODEL_WEIGHTS", "yolov8n.pt")
     confidence_threshold: float = float(os.getenv("TT_CONF_THRESHOLD", "0.25"))
     detector_backend: str = os.getenv("TT_DETECTOR", "yolo")  # "yolo" | "stub"
+    # Inference resolution. Litter is small relative to the frame (median TACO
+    # box = 0.35% of image area), so downscaling to the 640 default destroys it:
+    # measured on run_a weights, 1280 finds 2.2x as many sub-0.5% objects.
+    # Costs roughly 4x the compute per image.
+    imgsz: int = int(os.getenv("TT_IMGSZ", "640"))
+    # Test-time augmentation — a further recall gain at ~2-3x latency.
+    augment: bool = os.getenv("TT_AUGMENT", "0") not in ("0", "", "false", "False")
 
     # geolocation fallback (used when EXIF GPS is missing) -- Bengaluru default,
     # matching the coordinates in the PDF's sample TACO-derived record.

@@ -39,9 +39,18 @@ class Result:
 
 
 def resolve_split(cfg_path, cfg, split):
-    """Ultralytics resolves a relative `path:` against the yaml's own location."""
-    base = (cfg_path.parent / cfg["path"]).resolve()
-    return (base / cfg[split]).resolve()
+    """Mirror ultralytics' resolution: a relative `path:` is tried against the
+    current working directory first, and only falls back to ultralytics' global
+    datasets dir if that misses (data/utils.py::check_det_dataset).
+
+    Resolving against the yaml's own location instead — which is the intuitive
+    reading — makes this test pass on configs that real training cannot load.
+    """
+    base = Path(cfg["path"])
+    if not base.is_absolute() and not base.exists():
+        from ultralytics.utils import DATASETS_DIR
+        base = (DATASETS_DIR / base).resolve()
+    return (base.resolve() / cfg[split]).resolve()
 
 
 def check_split(img_dir, res, label, deep=False):

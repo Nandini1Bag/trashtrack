@@ -10,7 +10,7 @@
 #   yolo detect val data=configs/uavvaste.yaml model=runs/detect/train/weights/best.pt
 #   yolo detect val data=configs/sih.yaml model=runs/detect/train/weights/best.pt
 
-path: ../datasets/merged
+path: datasets/merged
 train: images/train
 val: images/train   # merged has no val — evaluate per-dataset using individual configs
 

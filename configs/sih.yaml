@@ -4,7 +4,7 @@
 # Deduplicated from 2,480 raw files → 1,526 unique annotated images (see scripts/convert_sih.py)
 # Usage: yolo detect val data=configs/sih.yaml model=runs/detect/train/weights/best.pt
 
-path: ../datasets/sih
+path: datasets/sih
 train: images/train
 val: images/val
 
